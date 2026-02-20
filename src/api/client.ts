@@ -2,31 +2,7 @@
  * API client for the Unrot backend.
  */
 
-import Constants from "expo-constants";
-import { Platform } from "react-native";
-
-// Physical devices need the machine's LAN IP.
-// Expo provides the debuggerHost (e.g. "192.170.11.136:8081") which we can reuse.
-const getBaseUrl = () => {
-  // Get host IP from Expo's debuggerHost
-  const debuggerHost =
-    Constants.expoConfig?.hostUri ??
-    Constants.manifest2?.extra?.expoGo?.debuggerHost;
-  const hostIp = debuggerHost?.split(":")[0];
-
-  if (hostIp) {
-    return `http://${hostIp}:8000`;
-  }
-
-  // Fallback for Android emulator
-  if (Platform.OS === "android") {
-    return "http://10.0.2.2:8000";
-  }
-
-  return "http://localhost:8000";
-};
-
-const BASE_URL = getBaseUrl();
+const BASE_URL = "https://unrot.onrender.com";
 
 interface RegisterParams {
   name: string;
