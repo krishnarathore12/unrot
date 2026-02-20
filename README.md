@@ -1,50 +1,68 @@
-# Welcome to your Expo app 👋
+# Unrot
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Unrot is a comprehensive full-stack application built with an Expo React Native frontend and a Python backend. Its primary features include real-time news aggregation based on specific topics and dynamic, interactive quiz generation to engage and test users' knowledge.
 
-## Get started
+## Architecture
 
-1. Install dependencies
+- **Frontend**: A cross-platform mobile application utilizing Expo Router for navigation and Expo EAS for builds (`eas.json`).
+- **Backend**: A robust Python service providing APIs for authentication, news fetching (via DuckDuckGo Search API), quiz generation, and data storage. It is pre-configured for deployment on Render via `render.yaml`.
+
+## Features
+
+- **Topic-based News**: Fetches the latest global news matching user-defined topics.
+- **Interactive Quizzes**: Generates dynamic quizzes based on aggregated news or topics.
+- **Cross-Platform**: Accessible on iOS, Android, and Web platforms using a unified codebase.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js & npm (for the frontend)
+- Python 3.x & pip (for the backend)
+
+### Frontend Environment
+
+1. **Install dependencies:**
 
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. **Start the Expo development server:**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+### Backend Environment
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. **Navigate to the backend directory:**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   ```bash
+   cd backend
+   ```
 
-## Get a fresh project
+2. **Install required Python packages:**
 
-When you're ready, run:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-npm run reset-project
-```
+3. **Run the backend server:**
+   ```bash
+   python main.py
+   ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Key Components
 
-## Learn more
+### Backend Modules
 
-To learn more about developing your project with Expo, look at the following resources:
+- `news_service.py`: Scraping logic connecting to DuckDuckGo search for the latest topic news.
+- `quiz_service.py` & `quiz.py`: The core logic for preparing, generation, and evaluation of quizzes.
+- `auth.py`: Authentication handler for managing user sessions.
+- `models.py`: The robust data models defining application structure.
+- `main.py`: Fast/Flask/Standard Entry point running the backend application.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Deployment Strategy
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Client (Frontend)**: Utilizes Expo Application Services (EAS) for streamlined deployment and OTA updates.
+- **Server (Backend)**: Contains a `render.yaml` for straightforward PaaS deployment on Render.
